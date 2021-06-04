@@ -1,0 +1,21 @@
+name: Deploy to firebase
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+    - name: Setup the code
+      run: npm install
+    - name: Deploy to Firebase
+      uses: mohammed-atif/firebase-publish-react@v1.0
+      with:
+        firebase-token: ${{ secrets.FIREBASE_TOKEN }}

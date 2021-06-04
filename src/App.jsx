@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {Button} from "@material-ui/core";
-import {firebase} from "./firebaseConfig";
+import {firebase} from "./server/firebaseConfig";
 
 function App() {
     const firebaseApp = firebase.apps[0];
