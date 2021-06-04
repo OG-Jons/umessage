@@ -6,5 +6,3 @@ branches:
     prefix: feature/
   - label: bug
     prefix: bugfix/
-  - label: *
-    name: develop
