@@ -5,7 +5,7 @@ import { firebase } from './server/firebaseConfig';
 
 function App() {
   const firebaseApp = firebase.apps[0];
-  console.log(firebaseApp)
+  console.log(firebaseApp);
 
   return (
     <div className="App">
