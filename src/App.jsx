@@ -4,8 +4,6 @@ import {Button} from "@material-ui/core";
 import {firebase} from "./server/firebaseConfig";
 
 function App() {
-    const firebaseApp = firebase.apps[0];
-    console.log(firebaseApp)
 
     return (
         <div className="App">
