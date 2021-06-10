@@ -4,7 +4,6 @@ import {Button} from "@material-ui/core";
 import {firebase} from "./server/firebaseConfig";
 
 function App() {
-
     return (
         <div className="App">
             <header className="App-header">
