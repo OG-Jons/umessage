@@ -1,0 +1,37 @@
+.MuiDrawer-root.MuiDrawer-modal.sc-bdnxRM.glhhVA.list {
+    position: fixed;
+    z-index: 300;
+    inset: 0px;
+}
+
+.MuiDrawer-paper {
+    top: 10%;
+    width: 15%;
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    outline: 0;
+    z-index: 1200;
+    position: fixed;
+    overflow-y: auto;
+    background-color: '#F6F6F6';
+    border-radius: 15px 15px 15px 15px;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+    
+    
+}
+
+.MuiBackdrop-root {
+    top: 10%;
+    left: 0; 
+    right: 0;
+    bottom: 0; 
+    display: flex;
+    z-index: -1;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}

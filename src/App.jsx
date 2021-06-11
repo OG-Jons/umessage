@@ -3,10 +3,10 @@ import './App.css';
 import {Button} from "@material-ui/core";
 import {firebase} from "./server/firebaseConfig";
 //import Sidebar from './components/Sidebar/sidebar'
-import MainHeader from './components/MainHeader/mainHeader'
+import MainHeader from './components/MainHeader/MainHeader.component'
 import React, {useState} from 'react'
 import { SettingsCellTwoTone } from '@material-ui/icons';
-import Sidebar from './components/Sidebar/sidebar';
+import Sidebar from './components/Sidebar/Sidebar.component';
 
 function App() {
     const firebaseApp = firebase.apps[0];

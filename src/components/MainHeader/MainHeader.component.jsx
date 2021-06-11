@@ -6,7 +6,7 @@ import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineO
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import React, {useState} from 'react'
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
     ({
         header: {
             position: 'absolute',
