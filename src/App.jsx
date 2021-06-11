@@ -1,16 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "@material-ui/core";
-import {firebase} from "./server/firebaseConfig";
-//import Sidebar from './components/Sidebar/sidebar'
 import MainHeader from './components/MainHeader/MainHeader.component'
 import React, {useState} from 'react'
-import { SettingsCellTwoTone } from '@material-ui/icons';
-import Sidebar from './components/Sidebar/Sidebar.component';
+// import Sidebar from './components/Sidebar/Sidebar.component';
+import TextFieldChatbox from './components/TextfieldChatbox/TextFieldChatbox.component';
 
 function App() {
-    const firebaseApp = firebase.apps[0];
-    console.log(firebaseApp)
     const [clickHamburger, setClickHamburger] = useState(false);
     const [clickDarkmode, setClickDarkmode] = useState(false);
 
@@ -29,7 +23,8 @@ function App() {
             onClickDarkmode={() => clickedDarkmode()}
             darkmode={clickDarkmode}
             />
-            <Sidebar sideBar={clickHamburger}/>
+            {/*<Sidebar sideBar={clickHamburger}/>*/}
+            <TextFieldChatbox />
         </div>
     
     );
