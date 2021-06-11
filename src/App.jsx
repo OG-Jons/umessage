@@ -2,21 +2,36 @@ import logo from './logo.svg';
 import './App.css';
 import {Button} from "@material-ui/core";
 import {firebase} from "./server/firebaseConfig";
+//import Sidebar from './components/Sidebar/sidebar'
+import MainHeader from './components/MainHeader/MainHeader.component'
+import React, {useState} from 'react'
+import { SettingsCellTwoTone } from '@material-ui/icons';
+import Sidebar from './components/Sidebar/Sidebar.component';
 
 function App() {
     const firebaseApp = firebase.apps[0];
     console.log(firebaseApp)
+    const [clickHamburger, setClickHamburger] = useState(false);
+    const [clickDarkmode, setClickDarkmode] = useState(false);
+
+    const clickedHamburger = () => {
+        setClickHamburger(!clickHamburger)
+    }
+
+    const clickedDarkmode = () => {
+        setClickDarkmode(!clickDarkmode)
+    }
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <Button variant="contained" color="primary">Simple Button</Button>
-                <code>
-                    very nais
-                </code>
-            </header>
+            <MainHeader onClickHamburger={() => clickedHamburger()} 
+            hamburger={clickHamburger} 
+            onClickDarkmode={() => clickedDarkmode()}
+            darkmode={clickDarkmode}
+            />
+            <Sidebar sideBar={clickHamburger}/>
         </div>
+    
     );
 }
 
