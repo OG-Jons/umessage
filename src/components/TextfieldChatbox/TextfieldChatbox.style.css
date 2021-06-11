@@ -10,6 +10,7 @@
 .icon-send {
   cursor: pointer;
   margin-left: 20px;
+  margin-right: 9px;
 }
 .input {
   width: 90%;
