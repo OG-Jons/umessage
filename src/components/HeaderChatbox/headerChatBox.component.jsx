@@ -1,13 +1,11 @@
-import { Toolbar, AppBar } from '@material-ui/core';
+import './HeaderChatbox.style.css';
 
-function headerChatBox() {
+function HeaderChatBox() {
     return (
-        <AppBar>
-            <Toolbar>
-              
-            </Toolbar>            
-        </AppBar>
+       <div className="main-header">
+           <h1 className="username">Max Mustermann</h1>
+       </div> 
     );
  }
 
-export default headerChatBox;
+export default HeaderChatBox;
