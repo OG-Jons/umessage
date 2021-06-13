@@ -1,35 +1,45 @@
-import { makeStyles, TextField, Box, IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
-import SendIcon from '@material-ui/icons/Send';
+import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import SendIcon from "@material-ui/icons/Send";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 290px)',
-      marginLeft: 270
-    },
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
-    left: 0,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    backgroundColor: 'rgb(177, 173, 173)',
-    paddingTop: 10,
-    paddingBottom: 10,
-    width: '100%'
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: '100vw',
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(-3),
+    height: '4rem',
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 280px)',
+      marginLeft: 0,
+      marginBottom: theme.spacing(3),
+    },
   },
   input: {
-    width: '90%',
-    marginLeft: 10
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    fontSize: '1.2rem',
   },
-  container: {
-    display: 'flex',
-    alignItems: 'center'
-  }
+  iconButton: {
+    padding: 10,
+    marginRight: 20,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
 }));
 
-export default function TextFieldChatbox() {
+export default function ChatBox() {
   const classes = useStyles();
+
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
@@ -38,16 +48,21 @@ export default function TextFieldChatbox() {
     console.log(input);
     setInput('');
   };
+
   return (
-    <Box className={classes.root}>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Box className={classes.container}>
-          <TextField className={classes.input} label="Message:" value={input} onChange={(e) => setInput(e.target.value)} />
-          <IconButton onClick={handleSubmit}>
-            <SendIcon />
-          </IconButton>
-        </Box>
-      </form>
-    </Box>
+      <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
+        <InputBase
+            className={classes.input}
+            placeholder="Message: "
+            inputProps={{ 'aria-label': 'enter message' }}
+            value={input}
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+        />
+        <IconButton type="submit" className={classes.iconButton} aria-label="search">
+          <SendIcon />
+        </IconButton>
+      </Paper>
   );
 }
