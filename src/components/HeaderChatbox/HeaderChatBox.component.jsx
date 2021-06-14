@@ -24,7 +24,7 @@ export default function HeaderChatBox() {
     const classes = useStyles();
     return (
         <Paper className={classes.root}>
-            <Typography variant="h5">Max Hurensohn</Typography>
+            <Typography variant="h5">Max Mustermann</Typography>
         </Paper>
     );
 }
