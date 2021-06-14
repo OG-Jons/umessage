@@ -1,13 +1,12 @@
 import TextFieldChatbox from '../TextfieldChatbox/TextFieldChatbox.component';
+import HeaderChatBox from "../HeaderChatbox/HeaderChatBox.component";
 import './Chatbox.style.css';
 
-function Chatbox() {
+export default function Chatbox() {
     return (
-        <div className="main-chatbox">
-            {/*<HeaderChatBox />*/}
+        <div>
+            <HeaderChatBox />
             <TextFieldChatbox />
         </div>
     )
 }
-
-export default Chatbox;

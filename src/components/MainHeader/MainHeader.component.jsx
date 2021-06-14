@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ResponsiveDrawer(props) {
+export default function MainHeader(props) {
     const {window} = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -266,5 +266,3 @@ function ResponsiveDrawer(props) {
         </div>
     );
 }
-
-export default ResponsiveDrawer;
