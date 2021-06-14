@@ -26,6 +26,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import WbSunnyIcon from '@material-ui/icons/WbSunny'
 import Brightness2Icon from '@material-ui/icons/Brightness2'
 import AddIcon from '@material-ui/icons/Add';
+import {deepPurple} from '@material-ui/core/colors'
 
 const drawerWidth = 240;
 
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         },
         appBar: {
             position: 'absolute',
-            backgroundColor: '#F6F6F6',
+            backgroundColor: deepPurple[900],
             [theme.breakpoints.up('sm')]: {
                 width: '100%',
                 marginLeft: drawerWidth,
@@ -115,18 +116,18 @@ const useStyles = makeStyles((theme) => ({
 
         darkModeIcons: {
             marginRight: theme.spacing(0),
-            color: '#000000'
+            color: '#ffffff'
         },
 
         profile: {
             marginRight: theme.spacing(2),
-            color: '#000000'
+            color: '#ffffff'
         },
 
         logo: {
             fontFamily: 'Work Sans, sans-serif',
             fontWeight: 600,
-            color: '#000000',
+            color: '#ffffff',
         },
 
         buttons: {
