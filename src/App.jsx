@@ -1,6 +1,6 @@
 import './App.css';
 import MainHeader from './components/MainHeader/MainHeader.component'
-import React, {useState} from 'react'
+import {useState} from 'react'
 
 function App() {
     const [clickHamburger, setClickHamburger] = useState(false);

@@ -1,4 +1,3 @@
-// import React from 'react';
 // import AppBar from '@material-ui/core/AppBar';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 // import Drawer from '@material-ui/core/Drawer';
@@ -114,7 +113,6 @@
 //
 // export default ResponsiveDrawer;
 
-import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -132,6 +130,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ChatBox from "../Chatbox/Chatbox.component";
+import {useState} from "react";
 
 const drawerWidth = 240;
 
@@ -167,17 +166,12 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
-    test: {
-        width: '100%',
-        backgroundColor: 'black'
-    }
 }));
 
-export default function MainHeader(props) {
-    const {window} = props;
+export default function MainHeader() {
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -207,7 +201,6 @@ export default function MainHeader(props) {
         </div>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <div className={classes.root}>
@@ -232,7 +225,6 @@ export default function MainHeader(props) {
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Hidden smUp implementation="css">
                     <Drawer
-                        container={container}
                         variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                         open={mobileOpen}
