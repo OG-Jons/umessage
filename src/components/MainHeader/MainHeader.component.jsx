@@ -306,10 +306,14 @@ export default function MainHeader() {
             setButtonGroup(true)
             setButtonGlobal(false)
             setButtonPrivate(false)
-        } else {
+        } if (buttonGroup === false) {
             setButtonGroup(false)
             setButtonGlobal(false)
             setButtonPrivate(true)
+        } else {
+            setButtonGroup(true)
+            setButtonGlobal(false)
+            setButtonPrivate(false)
         }
 
     }
@@ -351,7 +355,7 @@ export default function MainHeader() {
                 </div>
                 {buttonGroup ?
                     <List className={classes.ListItem}>
-                        <ListItem button>
+                        <ListItem button onClick={exampleClick}>
                             <ListItemAvatar>
                                 <Avatar>
                                     <AccountCircleIcon/>
@@ -359,7 +363,7 @@ export default function MainHeader() {
                             </ListItemAvatar>
                             <ListItemText primary="Klasse 123" secondary="Schick lösige"/>
                         </ListItem>
-                        <ListItem button>
+                        <ListItem button onClick={exampleClick}>
                             <ListItemAvatar>
                                 <Avatar>
                                     <AccountCircleIcon/>
@@ -378,7 +382,7 @@ export default function MainHeader() {
                             </ListItemAvatar>
                             <ListItemText primary="Fabian Odermatt" secondary="Lol"/>
                         </ListItem>
-                        <ListItem button>
+                        <ListItem button onClick={exampleClick}>
                             <ListItemAvatar>
                                 <Avatar>
                                     <AccountCircleIcon/>
@@ -386,7 +390,7 @@ export default function MainHeader() {
                             </ListItemAvatar>
                             <ListItemText primary="Silvan Chervet" secondary="</>"/>
                         </ListItem>
-                        <ListItem button>
+                        <ListItem button onClick={exampleClick}>
                             <ListItemAvatar>
                                 <Avatar>
                                     <AccountCircleIcon/>
