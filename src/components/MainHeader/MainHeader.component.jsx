@@ -296,9 +296,13 @@ export default function MainHeader() {
     }
 
     const handleClickGlobal = () => {
-        setButtonGroup(false)
-        setButtonPrivate(false)
-        setButtonGlobal(true)
+        if (buttonPrivate === true) {
+            setButtonPrivate(true)
+            setButtonGlobal(true)
+        } if (buttonGroup === true) {
+            setButtonGroup(true)
+            setButtonGlobal(true)
+        }
     }
 
     const exampleClick = () => {
