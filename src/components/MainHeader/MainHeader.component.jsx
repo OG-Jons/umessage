@@ -1,154 +1,33 @@
-// import AppBar from '@material-ui/core/AppBar';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import Drawer from '@material-ui/core/Drawer';
-// import Hidden from '@material-ui/core/Hidden';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-// import { makeStyles, useTheme } from '@material-ui/core/styles';
-//
-// const drawerWidth = 250;
-//
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex'
-//   },
-//   drawer: {
-//     [theme.breakpoints.up('sm')]: {
-//       width: drawerWidth,
-//       flexShrink: 0,
-//       top: '15%'
-//     }
-//   },
-//   appBar: {
-//     [theme.breakpoints.up('sm')]: {
-//       width: '100%',
-//       marginLeft: drawerWidth,
-//       zIndex: theme.zIndex.drawer + 1,
-//     }
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(2),
-//     [theme.breakpoints.up('sm')]: {
-//       display: 'none'
-//     }
-//   },
-//   // necessary for content to be below app bar
-//   toolbar: theme.mixins.toolbar,
-//   drawerPaper: {
-//     width: drawerWidth,
-//   },
-//   logo: {
-//     textAlign: "center"
-//   }
-// }));
-//
-// function ResponsiveDrawer(props) {
-//   const { window } = props;
-//   const classes = useStyles();
-//   const theme = useTheme();
-//   const [mobileOpen, setMobileOpen] = React.useState(false);
-//
-//   const handleDrawerToggle = () => {
-//     setMobileOpen(!mobileOpen);
-//   };
-//
-//   const drawer = (
-//     <div>
-//       <div className={classes.toolbar} />
-//         Toolbar
-//     </div>
-//   );
-//
-//   const container = window !== undefined ? () => window().document.body : undefined;
-//
-//   return (
-//     <div className={classes.root}>
-//       <CssBaseline />
-//       <AppBar position="fixed" className={classes.appBar}>
-//         <Toolbar className={classes.toolBar}>
-//           <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
-//             <MenuIcon />
-//           </IconButton>
-//           <Typography variant="h6" noWrap>
-//             uMessage
-//           </Typography>
-//         </Toolbar>
-//       </AppBar>
-//       <nav className={classes.drawer} aria-label="mailbox folders">
-//         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-//         <Hidden smUp implementation="css">
-//           <Drawer
-//             container={container}
-//             variant="temporary"
-//             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-//             open={mobileOpen}
-//             onClose={handleDrawerToggle}
-//             classes={{
-//               paper: classes.drawerPaper
-//             }}
-//             ModalProps={{
-//               keepMounted: true // Better open performance on mobile.
-//             }}
-//           >
-//             {drawer}
-//           </Drawer>
-//         </Hidden>
-//         <Hidden xsDown implementation="css">
-//           <Drawer
-//             classes={{
-//               paper: classes.drawerPaper
-//             }}
-//             variant="permanent"
-//             open
-//           >
-//             {drawer}
-//           </Drawer>
-//         </Hidden>
-//       </nav>
-//     </div>
-//   );
-// }
-//
-// export default ResponsiveDrawer;
-
-import AppBar from '@material-ui/core/AppBar'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Divider from '@material-ui/core/Divider'
-import Drawer from '@material-ui/core/Drawer'
-import Hidden from '@material-ui/core/Hidden'
-import IconButton from '@material-ui/core/IconButton'
-//import InboxIcon from '@material-ui/icons/MoveToInbox'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-//import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-//import MailIcon from '@material-ui/icons/Mail'
-import MenuIcon from '@material-ui/icons/Menu'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import {
+    Avatar,
+    Button,
+    createMuiTheme,
+    InputBase,
+    ListItemAvatar,
+    ThemeProvider,
+    AppBar,
+    CssBaseline,
+    Divider,
+    Drawer,
+    Hidden,
+    IconButton,
+    List,
+    ListItem,
+    ListItemText,
+    Toolbar,
+    Typography
+} from '@material-ui/core'
 import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
-import ChatBox from '../Chatbox/Chatbox.component'
 import {useState} from 'react'
-import {Avatar, Button, createMuiTheme, InputBase, ListItemAvatar, ThemeProvider} from '@material-ui/core'
-//import ImageIcon from '@material-ui/icons/Image'
-//import WorkIcon from '@material-ui/icons/Work'
-//import BeachAccessIcon from '@material-ui/icons/BeachAccess'
+import ChatBox from '../Chatbox/Chatbox.component'
+import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import SearchIcon from '@material-ui/icons/Search'
 import WbSunnyIcon from '@material-ui/icons/WbSunny'
 import Brightness2Icon from '@material-ui/icons/Brightness2'
-//import Grid from '@material-ui/core/Grid'
-//import ToggleButton from '@material-ui/lab/ToggleButton'
-//import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-///import LaptopIcon from '@material-ui/icons/Laptop'
-//import TvIcon from '@material-ui/icons/Tv'
-//import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid'
 import AddIcon from '@material-ui/icons/Add';
 
-const drawerWidth = 240
-
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -190,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
             width: '100%',
             maxWidth: 360,
         },
-
         search: {
             position: 'relative',
             borderRadius: theme.shape.borderRadius,
