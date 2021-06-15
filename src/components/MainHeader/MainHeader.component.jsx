@@ -15,7 +15,7 @@ import {
     ListItem,
     ListItemText,
     Toolbar,
-    Typography
+    Typography, Menu, MenuItem
 } from '@material-ui/core'
 import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
 import {useState} from 'react'
@@ -153,6 +153,7 @@ export default function MainHeader() {
     const [buttonGroup, setButtonGroup] = useState(false)
     const [buttonPrivate, setButtonPrivate] = useState(true)
     const [buttonGlobal, setButtonGlobal] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const themeDarkmode = createMuiTheme({
         palette: {
@@ -204,8 +205,14 @@ export default function MainHeader() {
             setButtonGlobal(false)
             setButtonPrivate(false)
         }
-
     }
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const drawer = (
         <div>
@@ -238,9 +245,18 @@ export default function MainHeader() {
                             disabled={buttonGlobal}>
                         Global
                     </Button>
-                    <IconButton>
+                    <IconButton onClick={handleClick}>
                         <AddIcon/>
                     </IconButton>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleClose}>New Group</MenuItem>
+                        </Menu>
                 </div>
                 {buttonGroup ?
                     <List className={classes.ListItem}>
