@@ -164,16 +164,20 @@ export default function MainHeader() {
         setMobileOpen(!mobileOpen)
     }
 
+    //Deactivates Group button.
     const handleClickGroup = () => {
         setButtonGroup(true)
         setButtonPrivate(false)
     }
 
+    //Deactivates Private button.
     const handleClickPrivate = () => {
         setButtonGroup(false)
         setButtonPrivate(true)
     }
 
+
+    //Deactivates Global button. And the chat button depending on which Chat has been clicked.
     const handleClickGlobal = () => {
         if (buttonPrivate === true) {
             setButtonPrivate(true)
@@ -184,6 +188,8 @@ export default function MainHeader() {
         }
     }
 
+
+    //Activates again the Global Button. And deactivates the Button depending on which Chat has been clicked.
     const exampleClick = () => {
         if (buttonPrivate === false) {
             setButtonGroup(true)
