@@ -13,7 +13,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "no-unused-vars": ["warning", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "semi": "warn"
