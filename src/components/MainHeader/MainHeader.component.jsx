@@ -27,6 +27,12 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny'
 import Brightness2Icon from '@material-ui/icons/Brightness2'
 import AddIcon from '@material-ui/icons/Add';
 import {deepPurple} from '@material-ui/core/colors'
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PeopleIcon from '@material-ui/icons/People';
+import EmpjiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import LanguageIcon from '@material-ui/icons/Language';
 
 const drawerWidth = 240;
 
@@ -154,12 +160,17 @@ export default function MainHeader() {
     const [buttonPrivate, setButtonPrivate] = useState(true)
     const [buttonGlobal, setButtonGlobal] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
+    const [tabValue, setTabValue] = useState(1);
 
     const themeDarkmode = createMuiTheme({
         palette: {
             type: clicked ? 'dark' : 'light',
         },
     })
+
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+      };
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen)
@@ -233,19 +244,19 @@ export default function MainHeader() {
                     />
                 </div>
                 <div className={classes.buttons}>
-                    <Button variant="contained" className={classes.button} onClick={handleClickGroup}
-                            disabled={buttonGroup}>
-                        Group
-                    </Button>
-                    <Button variant="contained" className={classes.button} onClick={handleClickPrivate}
-                            disabled={buttonPrivate}>
-                        Private
-                    </Button>
-                    <Button variant="contained" className={classes.button} onClick={handleClickGlobal}
-                            disabled={buttonGlobal}>
-                        Global
-                    </Button>
-                    <IconButton onClick={handleClick}>
+                <Paper square>
+                    <Tabs
+                    value={tabValue}
+                    indicatorColor="secondary"
+                    onChange={handleTabChange}
+                    variant="fullWidth"
+                    scrollButtons="off"
+                    >
+                    <Tab icon={<PeopleIcon />} />
+                    <Tab icon={<EmpjiPeopleIcon />}/>
+                    <Tab icon={<LanguageIcon />}/>
+                    </Tabs>
+                    {/* <IconButton onClick={handleClick}>
                         <AddIcon/>
                     </IconButton>
                         <Menu
@@ -256,7 +267,8 @@ export default function MainHeader() {
                             onClose={handleClose}
                         >
                             <MenuItem onClick={handleClose}>New Group</MenuItem>
-                        </Menu>
+                        </Menu> */}
+                </Paper>
                 </div>
                 {buttonGroup ?
                     <List className={classes.ListItem}>
