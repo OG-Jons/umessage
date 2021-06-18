@@ -1,19 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "@material-ui/core";
-import {firebase} from "./server/firebaseConfig";
+import MainHeader from './components/MainHeader/MainHeader.component'
+import {useState} from 'react'
 
 function App() {
+    const [clickHamburger, setClickHamburger] = useState(false);
+    const [clickDarkmode, setClickDarkmode] = useState(false);
+
+    const clickedHamburger = () => {
+        setClickHamburger(!clickHamburger)
+    }
+
+    const clickedDarkmode = () => {
+        setClickDarkmode(!clickDarkmode)
+    }
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <Button variant="contained" color="primary">Simple Button</Button>
-                <code>
-                    very nais
-                </code>
-            </header>
+            <MainHeader onClickHamburger={() => clickedHamburger()} 
+            hamburger={clickHamburger} 
+            onClickDarkmode={() => clickedDarkmode()}
+            darkmode={clickDarkmode}
+            />
         </div>
+    
     );
 }
 
