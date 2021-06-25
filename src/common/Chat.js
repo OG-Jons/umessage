@@ -1,25 +1,36 @@
+import { RestoreOutlined } from "@material-ui/icons";
 import { db } from "../server/firebaseConfig";
+import { messageConverter } from "./Message";
 
 class Chat {
-  constructor(groupChat, users, messages) {
+  constructor(id, groupChat, users) {
+    this.id = id;
     this.groupChat = groupChat;
     this.users = users;
-    this.messages = messages;
+    this.messageCollection = db
+      .collection("chat")
+      .doc(this.id)
+      .collection("messages");
   }
 
   toString() {
     return (
+      "id: " +
+      this.id +
       "groupchat: " +
       this.groupChat +
       "\n, users: " +
-      this.users +
-      "\n, messages:" +
-      this.messages
+      this.users
     );
   }
-  sendMessage(message){
-    //TODO: Logic
-  }  
+  sendMessage(message) {
+    console.log(message);
+    this.messageCollection.withConverter(messageConverter);
+  }
+
+  getMessageCollection() {
+    return this.messageCollection;
+  }
 }
 
 // Firestore data converter
@@ -33,28 +44,30 @@ var chatConverter = {
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
-    // return new Chat(data.groupChat, data.users, data.messages);
-    // return new Chat(data.groupChat, data.users, snapshot.collection('messages'));
-    // return new Chat(data.groupChat, data.users, snapshot.listCollections());
-    return new Chat(data.groupChat, data.users, "not working"); //TODO: return messages 
+    return new Chat(snapshot.id, data.groupChat, data.users);
   },
 };
 
-function getChatsFromUID(uid) {//TODO: fix function
+async function getChatsFromUID(uid) {
   db.collection("chat")
     .where("users", "array-contains", uid)
-    // .doc("bu6oma6GIOiqAIPRLWk9")
     .withConverter(chatConverter)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        return doc.data();
-      } else {
-        console.log("No such document!");
-      }
+    .get()  
+    .then((querySnapshot) => {
+      // console.log(querySnapshot.map(doc => doc.data()));
+      // let tmp = querySnapshot.map(doc => doc.data());
+      // console.log("test");
+      // return tmp;
+      querySnapshot.forEach(async (doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.data());
+        console.log(doc.data());
+      });
+      
     })
     .catch((error) => {
-      console.log("Error getting document:", error);
+      return ("Error getting documents: ", error);
     });
 }
+
 export { Chat, chatConverter, getChatsFromUID };
