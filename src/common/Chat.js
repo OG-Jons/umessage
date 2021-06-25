@@ -50,22 +50,29 @@ var chatConverter = {
 
 async function getChatsFromUID(uid) {
   db.collection("chat")
-    .where("users", "array-contains", uid)
-    .withConverter(chatConverter)
-    .get()  
-    .then((querySnapshot) => {
-      // console.log(querySnapshot.map(doc => doc.data()));
-      // let tmp = querySnapshot.map(doc => doc.data());
-      // console.log("test");
-      // return tmp;
-      querySnapshot.forEach(async (doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.data());
-        console.log(doc.data());
-      });
-      
+  .where("users", "array-contains", uid)
+  .withConverter(chatConverter)
+  .get()  
+  .then((querySnapshot) => {
+    // console.log(querySnapshot.map(doc => doc.data()));
+    // let tmp = querySnapshot.map(doc => doc.data());
+    // console.log("test");
+    // return tmp;
+
+    let myPromise = new Promise((reolve)=>{
+      var result = [];
+        querySnapshot.forEach( (doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.data());
+          // console.log(doc.data());
+          result.push(doc.data());
+        })
+        console.log("test");
+        console.log(result);
+        
     })
-    .catch((error) => {
+    return myPromise;
+    }).catch((error) => {
       return ("Error getting documents: ", error);
     });
 }

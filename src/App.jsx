@@ -11,10 +11,11 @@ function App() {
     useEffect(() => {
             getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2")
                 .then(data => {
-                    setTest(data);
+                    // setTest(data);
                     console.log(data);
-                    console.log("test2");
+                    // console.log("test2");
                 })
+            // console.log(getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2"))
         // bruhMoment();
     }, [])
 
