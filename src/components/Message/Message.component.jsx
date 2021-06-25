@@ -2,6 +2,10 @@ import {makeStyles} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
+import {Box} from '@material-ui/core'
+import "./Message.style.css"
+
+
 
 const useStyles = makeStyles({
     message: {
@@ -14,10 +18,9 @@ const useStyles = makeStyles({
     },
     root: {
         width: '100%',
-        height: '89ex',
+        height: '91ex',
         overflow: 'scroll',
-        zIndex: -1
-
+        zIndex: -1,
     },
     parent: {
         width: '100%',
@@ -32,22 +35,25 @@ const useStyles = makeStyles({
     },
 
     received: {
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        borderBottomLeftRadius: 0
     },
 
     send: {
         justifyContent: 'flex-end'
-    }
+    },
+
 })
 
 export default function Message({messages}) {
     const classes = useStyles()
 
     return (
-        <div className={classes.root}>
+        <Box className={`${classes.root} chatBox`}>
             {messages.map(message => (
-                <div className={`${classes.parent} ${message.id === 1 ? classes.send : classes.received}` } key={message.id}>
-                    <Card className={` ${classes.message}`} variant="outlined">
+                <div className={`${classes.parent} ${message.id === 1 ? classes.send : classes.received}`}
+                     key={message.id}>
+                    <Card className={` ${classes.message}`} variant="outlined" height={'75%'}>
                         <CardContent>
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
                                 {message.name}
@@ -59,7 +65,6 @@ export default function Message({messages}) {
                     </Card>
                 </div>
             ))}
-        </div>
-
+        </Box>
     )
 }
