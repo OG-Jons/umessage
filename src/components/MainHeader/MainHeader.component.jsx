@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   createMuiTheme,
   InputBase,
   ListItemAvatar,
@@ -16,10 +15,8 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  Menu,
-  MenuItem,
 } from "@material-ui/core";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
+import { fade, makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import ChatBox from "../Chatbox/Chatbox.component";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -27,16 +24,48 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import Brightness2Icon from "@material-ui/icons/Brightness2";
-import AddIcon from "@material-ui/icons/Add";
 import { deepPurple } from "@material-ui/core/colors";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import PeopleIcon from "@material-ui/icons/People";
-import EmpjiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import LanguageIcon from "@material-ui/icons/Language";
 
 const drawerWidth = 240;
+
+const AntTab = withStyles((theme) => ({
+  root: {
+    textTransform: 'none',
+    minWidth: 40,
+    fontWeight: theme.typography.fontWeightRegular,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:hover': {
+      color: '#000000',
+      opacity: 1,
+    },
+    '&$selected': {
+      color: '#000000',
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    '&:focus': {
+      color: '#000000',
+    },
+  },
+  selected: {},
+}))((props) => <Tab disableRipple {...props} />);
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -159,10 +188,6 @@ export default function MainHeader() {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [buttonGroup, setButtonGroup] = useState(false);
-  const [buttonPrivate, setButtonPrivate] = useState(true);
-  const [buttonGlobal, setButtonGlobal] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [tabValue, setTabValue] = useState(1);
 
   const themeDarkmode = createMuiTheme({
@@ -179,61 +204,6 @@ export default function MainHeader() {
     setMobileOpen(!mobileOpen);
   };
 
-  //Deactivates Group button.
-  const handleClickGroup = () => {
-    setButtonGroup(true);
-    setButtonPrivate(false);
-  };
-
-  //Deactivates Private button.
-  const handleClickPrivate = () => {
-    setButtonGroup(false);
-    setButtonPrivate(true);
-  };
-
-  //Deactivates Global button. And the chat button depending on which Chat has been clicked.
-  const handleClickGlobal = () => {
-    if (buttonPrivate === true) {
-      setButtonPrivate(true);
-      setButtonGlobal(true);
-    }
-    if (buttonGroup === true) {
-      setButtonGroup(true);
-      setButtonGlobal(true);
-    }
-  };
-
-  //Activates again the Global Button. And deactivates the Button depending on which Chat has been clicked.
-  const exampleClick = () => {
-    if (buttonPrivate === false) {
-      setButtonGroup(true);
-      setButtonGlobal(false);
-      setButtonPrivate(false);
-    }
-    if (buttonGroup === false) {
-      setButtonGroup(false);
-      setButtonGlobal(false);
-      setButtonPrivate(true);
-    } else {
-      setButtonGroup(true);
-      setButtonGlobal(false);
-      setButtonPrivate(false);
-    }
-  };
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  function a11yProps(index) {
-    return {
-      id: `scrollable-prevent-tab-${index}`,
-      "aria-controls": `scrollable-prevent-tabpanel-${index}`,
-    };
-  }
   const drawer = (
     <div>
       <ThemeProvider theme={themeDarkmode}>
@@ -263,9 +233,9 @@ export default function MainHeader() {
               aria-label="scrollable prevent tabs example"
               className={{root: classes.tab}}
             >
-              <Tab icon={<PeopleIcon />} />
-              <Tab icon={<EmpjiPeopleIcon />} />
-              <Tab icon={<LanguageIcon />} />
+              <AntTab icon={<PeopleIcon />} />
+              <AntTab icon={<EmojiPeopleIcon />} />
+              <AntTab icon={<LanguageIcon />} />
             </Tabs>
           </Paper>
         </div>
