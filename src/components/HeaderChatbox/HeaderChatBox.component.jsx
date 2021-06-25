@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         width: '100%',
         height: '4rem',
+        overflow: 'hidden',
+        marginBottom: '1%',
         [theme.breakpoints.up('sm')]: {
             width: '100%',
             marginLeft: 0,
