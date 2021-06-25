@@ -21,6 +21,7 @@ const useStyles = makeStyles({
         height: '91ex',
         overflow: 'scroll',
         zIndex: -1,
+        paddingBottom: 1
     },
     parent: {
         width: '100%',
@@ -53,7 +54,7 @@ export default function Message({messages}) {
             {messages.map(message => (
                 <div className={`${classes.parent} ${message.id === 1 ? classes.send : classes.received}`}
                      key={message.id}>
-                    <Card className={` ${classes.message}`} variant="outlined" height={'75%'}>
+                    <Card className={classes.message} variant="outlined" height={'75%'}>
                         <CardContent>
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
                                 {message.name}
