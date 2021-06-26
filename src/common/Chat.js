@@ -1,4 +1,3 @@
-import { RestoreOutlined } from "@material-ui/icons";
 import { db } from "../server/firebaseConfig";
 import { messageConverter } from "./Message";
 
@@ -66,11 +65,10 @@ async function getChatsFromUID(uid) {
           // console.log(doc.data());
           // console.log(doc.data());
           result.push(doc.data());
-        })
+        });
         console.log("test");
         console.log(result);
-        
-    })
+    });
     return myPromise;
     }).catch((error) => {
       return ("Error getting documents: ", error);

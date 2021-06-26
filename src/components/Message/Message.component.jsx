@@ -1,9 +1,9 @@
-import {makeStyles} from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import {Box} from '@material-ui/core'
-import "./Message.style.css"
+import {makeStyles} from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import {Box} from '@material-ui/core';
+import "./Message.style.css";
 
 
 
@@ -44,10 +44,10 @@ const useStyles = makeStyles({
         justifyContent: 'flex-end'
     },
 
-})
+});
 
 export default function Message({messages}) {
-    const classes = useStyles()
+    const classes = useStyles();
 
     return (
         <Box className={`${classes.root} chatBox`}>
@@ -67,5 +67,5 @@ export default function Message({messages}) {
                 </div>
             ))}
         </Box>
-    )
+    );
 }

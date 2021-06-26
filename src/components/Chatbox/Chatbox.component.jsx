@@ -1,7 +1,7 @@
-import TextFieldChatbox from '../TextfieldChatbox/TextFieldChatbox.component'
-import HeaderChatBox from '../HeaderChatbox/HeaderChatBox.component'
-import './Chatbox.style.css'
-import Message from '../Message/Message.component'
+import TextFieldChatbox from '../TextfieldChatbox/TextFieldChatbox.component';
+import HeaderChatBox from '../HeaderChatbox/HeaderChatBox.component';
+import './Chatbox.style.css';
+import Message from '../Message/Message.component';
 
 export default function Chatbox() {
     const data = [{
@@ -50,7 +50,7 @@ export default function Chatbox() {
             message: ' Fabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasst',
             name: 'Nick'
         },
-    ]
+    ];
 
     return (
         <div>
@@ -58,5 +58,5 @@ export default function Chatbox() {
             <Message messages={data} />
             <TextFieldChatbox/>
         </div>
-    )
+    );
 }

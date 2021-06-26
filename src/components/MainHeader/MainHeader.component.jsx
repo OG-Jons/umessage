@@ -16,17 +16,17 @@ import {
     ListItemText,
     Toolbar,
     Typography, Menu, MenuItem
-} from '@material-ui/core'
-import {fade, makeStyles, useTheme} from '@material-ui/core/styles'
-import {useState} from 'react'
-import ChatBox from '../Chatbox/Chatbox.component'
-import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import SearchIcon from '@material-ui/icons/Search'
-import WbSunnyIcon from '@material-ui/icons/WbSunny'
-import Brightness2Icon from '@material-ui/icons/Brightness2'
+} from '@material-ui/core';
+import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
+import {useState} from 'react';
+import ChatBox from '../Chatbox/Chatbox.component';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SearchIcon from '@material-ui/icons/Search';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
 import AddIcon from '@material-ui/icons/Add';
-import {deepPurple} from '@material-ui/core/colors'
+import {deepPurple} from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 
@@ -142,69 +142,69 @@ const useStyles = makeStyles((theme) => ({
         }
 
     })
-)
+);
 
 export default function MainHeader() {
-    const classes = useStyles()
-    const theme = useTheme()
-    const [mobileOpen, setMobileOpen] = useState(false)
-    const [clicked, setClicked] = useState(false)
-    const [buttonGroup, setButtonGroup] = useState(false)
-    const [buttonPrivate, setButtonPrivate] = useState(true)
-    const [buttonGlobal, setButtonGlobal] = useState(false)
+    const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [buttonGroup, setButtonGroup] = useState(false);
+    const [buttonPrivate, setButtonPrivate] = useState(true);
+    const [buttonGlobal, setButtonGlobal] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const themeDarkmode = createMuiTheme({
         palette: {
             type: clicked ? 'dark' : 'light',
         },
-    })
+    });
 
     const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen)
-    }
+        setMobileOpen(!mobileOpen);
+    };
 
     //Deactivates Group button.
     const handleClickGroup = () => {
-        setButtonGroup(true)
-        setButtonPrivate(false)
-    }
+        setButtonGroup(true);
+        setButtonPrivate(false);
+    };
 
     //Deactivates Private button.
     const handleClickPrivate = () => {
-        setButtonGroup(false)
-        setButtonPrivate(true)
-    }
+        setButtonGroup(false);
+        setButtonPrivate(true);
+    };
 
 
     //Deactivates Global button. And the chat button depending on which Chat has been clicked.
     const handleClickGlobal = () => {
         if (buttonPrivate === true) {
-            setButtonPrivate(true)
-            setButtonGlobal(true)
+            setButtonPrivate(true);
+            setButtonGlobal(true);
         } if (buttonGroup === true) {
-            setButtonGroup(true)
-            setButtonGlobal(true)
+            setButtonGroup(true);
+            setButtonGlobal(true);
         }
-    }
+    };
 
 
     //Activates again the Global Button. And deactivates the Button depending on which Chat has been clicked.
     const exampleClick = () => {
         if (buttonPrivate === false) {
-            setButtonGroup(true)
-            setButtonGlobal(false)
-            setButtonPrivate(false)
+            setButtonGroup(true);
+            setButtonGlobal(false);
+            setButtonPrivate(false);
         } if (buttonGroup === false) {
-            setButtonGroup(false)
-            setButtonGlobal(false)
-            setButtonPrivate(true)
+            setButtonGroup(false);
+            setButtonGlobal(false);
+            setButtonPrivate(true);
         } else {
-            setButtonGroup(true)
-            setButtonGlobal(false)
-            setButtonPrivate(false)
+            setButtonGroup(true);
+            setButtonGlobal(false);
+            setButtonPrivate(false);
         }
-    }
+    };
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -306,7 +306,7 @@ export default function MainHeader() {
                 }
             </ThemeProvider>
         </div>
-    )
+    );
 
 
     return (
@@ -379,5 +379,5 @@ export default function MainHeader() {
                 </main>
             </ThemeProvider>
         </div>
-    )
+    );
 }
