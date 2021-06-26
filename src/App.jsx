@@ -1,11 +1,20 @@
 import './App.css';
 import MainHeader from './components/MainHeader/MainHeader.component';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {getMessages} from "./server/Chat";
 
 
 function App() {
     const [clickHamburger, setClickHamburger] = useState(false);
     const [clickDarkmode, setClickDarkmode] = useState(false);
+    const [chats, setChats] = useState(null);
+
+    useEffect(() => {
+        getMessages().then(data => {
+            setChats(data);
+        });
+    }, []);
+
 
     const clickedHamburger = () => {
         setClickHamburger(!clickHamburger);
@@ -17,13 +26,12 @@ function App() {
 
     return (
         <div className="App">
-            <MainHeader onClickHamburger={() => clickedHamburger()} 
-            hamburger={clickHamburger} 
-            onClickDarkmode={() => clickedDarkmode()}
-            darkmode={clickDarkmode}
+            <MainHeader onClickHamburger={() => clickedHamburger()}
+                        hamburger={clickHamburger}
+                        onClickDarkmode={() => clickedDarkmode()}
+                        darkmode={clickDarkmode}
             />
         </div>
-    
     );
 }
 

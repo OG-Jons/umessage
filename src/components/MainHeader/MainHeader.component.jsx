@@ -267,7 +267,6 @@ export default function MainHeader() {
                         <ListItemText primary="Klasse12345" secondary="Chömet On"/>
                     </ListItem>
                 </List>
-                )
             </ThemeProvider>
         </div>
     );
