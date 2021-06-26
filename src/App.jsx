@@ -1,43 +1,29 @@
-import { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "@material-ui/core";
-import { getChatsFromUID } from "./common/Chat";
+import MainHeader from './components/MainHeader/MainHeader.component'
+import {useState} from 'react'
 
 
 function App() {
-    const [test, setTest] = useState(null);
+    const [clickHamburger, setClickHamburger] = useState(false);
+    const [clickDarkmode, setClickDarkmode] = useState(false);
 
-    useEffect(() => {
-            getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2")
-                .then(data => {
-                    // setTest(data);
-                    console.log(data);
-                    // console.log("test2");
-                })
-            // console.log(getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2"))
-        // bruhMoment();
-    }, [])
+    const clickedHamburger = () => {
+        setClickHamburger(!clickHamburger)
+    }
 
-    // async function bruhMoment() {
-    //     getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2")
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-    // }
+    const clickedDarkmode = () => {
+        setClickDarkmode(!clickDarkmode)
+    }
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <Button variant="contained" color="primary">Simple Button</Button>
-                <code>
-                    {test &&
-                        JSON.stringify(test)
-                    }
-                </code>
-            </header>
+            <MainHeader onClickHamburger={() => clickedHamburger()} 
+            hamburger={clickHamburger} 
+            onClickDarkmode={() => clickedDarkmode()}
+            darkmode={clickDarkmode}
+            />
         </div>
+    
     );
 }
 

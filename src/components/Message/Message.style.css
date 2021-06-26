@@ -1,0 +1,36 @@
+@media (max-height: 850px) {
+    .chatBox {
+        height: 80ex !important;
+    }
+}
+
+@media (max-height: 800px) {
+    .chatBox {
+        height: 75ex !important;
+    }
+}
+
+@media (max-height: 750px) {
+    .chatBox {
+        height: 68ex !important;
+    }
+}
+
+@media (max-height: 700px) {
+    .chatBox {
+        height: 60ex !important;
+    }
+}
+
+@media (max-height: 650px) {
+    .chatBox {
+        height: 53ex !important;
+    }
+}
+
+
+@media (max-height: 600px) {
+    .chatBox {
+        height: 47ex !important;
+    }
+}
