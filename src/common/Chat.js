@@ -1,4 +1,3 @@
-import { RestoreOutlined } from "@material-ui/icons";
 import { db } from "../server/firebaseConfig";
 import { Message, messageConverter } from "./Message";
 
