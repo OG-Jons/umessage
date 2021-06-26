@@ -1,35 +1,29 @@
 import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Button} from "@material-ui/core";
-import { getChatsFromUID } from "./common/Chat";
+import { Button } from "@material-ui/core";
+import { chatConverter, getChatsFromUID } from "./common/Chat";
+import { db } from "./server/firebaseConfig";
+import { messageConverter } from "./common/Message";
+
 
 
 function App() {
     const [test, setTest] = useState(null);
 
     useEffect(() => {
-            getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2")
-                .then(data => {
-                    // setTest(data);
-                    console.log(data);
-                    // console.log("test2");
-                })
-            // console.log(getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2"))
-        // bruhMoment();
+        getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2")
+        .then(data => {
+            console.log(data.toString());
+            // console.log(data.getMessageCollection());
+            // data.sendMessage("testMessage");
+        })
     }, [])
-
-    // async function bruhMoment() {
-    //     getChatsFromUID("Kp3MBM36cwfv6S5IXMYAC90osjK2")
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-    // }
 
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
+                <img src={logo} className="App-logo" alt="logo" />
                 <Button variant="contained" color="primary">Simple Button</Button>
                 <code>
                     {test &&

@@ -1,6 +1,6 @@
 import { RestoreOutlined } from "@material-ui/icons";
 import { db } from "../server/firebaseConfig";
-import { messageConverter } from "./Message";
+import { Message, messageConverter } from "./Message";
 
 class Chat {
   constructor(id, groupChat, users) {
@@ -14,18 +14,33 @@ class Chat {
   }
 
   toString() {
-    return (
-      "id: " +
+    const messages = async () => {
+      await this.messageCollection.withConverter(messageConverter).get().then((querySnapshot) => {
+        let messages = [];
+        querySnapshot.forEach((message) => {
+          messages.push(message.data());
+        });
+        console.log(messages)
+        return messages;
+      });
+    }
+
+    let returnString = "id: " +
       this.id +
       "groupchat: " +
       this.groupChat +
       "\n, users: " +
-      this.users
-    );
+      this.users +
+      "\n, messages: "+ messages();
+      // "\n, messages: ";
+      // messages().then(message => returnString.concat(message.toString()))
+
+    return returnString;
   }
+
   sendMessage(message) {
     console.log(message);
-    this.messageCollection.withConverter(messageConverter);
+    this.messageCollection.withConverter(messageConverter).set(new Message(null, message, "null", "test"));
   }
 
   getMessageCollection() {
@@ -49,32 +64,19 @@ var chatConverter = {
 };
 
 async function getChatsFromUID(uid) {
-  db.collection("chat")
-  .where("users", "array-contains", uid)
-  .withConverter(chatConverter)
-  .get()  
-  .then((querySnapshot) => {
-    // console.log(querySnapshot.map(doc => doc.data()));
-    // let tmp = querySnapshot.map(doc => doc.data());
-    // console.log("test");
-    // return tmp;
-
-    let myPromise = new Promise((reolve)=>{
-      var result = [];
-        querySnapshot.forEach( (doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.data());
-          // console.log(doc.data());
-          result.push(doc.data());
-        })
-        console.log("test");
-        console.log(result);
-        
-    })
-    return myPromise;
+  var result = [];
+  await db.collection("chat")
+    .where("users", "array-contains", uid)
+    .withConverter(chatConverter)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+      })
     }).catch((error) => {
       return ("Error getting documents: ", error);
     });
+  return result;
 }
 
 export { Chat, chatConverter, getChatsFromUID };
