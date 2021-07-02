@@ -31,7 +31,8 @@ class Chat {
       this.groupChat +
       "\n, users: " +
       this.users +
-      "\n, messages: "+ messages();
+      "\n, messages: " +
+      messages().then(messages => returnString + messages);
       // "\n, messages: ";
       // messages().then(message => returnString.concat(message.toString()))
 
