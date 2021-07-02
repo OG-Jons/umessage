@@ -1,6 +1,5 @@
 import {
     Avatar,
-    Button,
     createMuiTheme,
     InputBase,
     ListItemAvatar,
@@ -62,6 +61,12 @@ const AntTab = withStyles((theme) => ({
         },
         '&:focus': {
             color: '#000000',
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+            [theme.breakpoints.up('sm')]: {
+                display: 'none',
+            },
         },
     },
     selected: {},
@@ -266,7 +271,6 @@ export default function MainHeader() {
             </ThemeProvider>
         </div>
     )
-
 
     return (
         <div className={classes.root}>
