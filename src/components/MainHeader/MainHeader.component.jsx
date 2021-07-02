@@ -14,7 +14,8 @@ import {
     ListItem,
     ListItemText,
     Toolbar,
-    Typography, Box,
+    Typography,
+    Box,
 } from '@material-ui/core'
 import {fade, makeStyles, useTheme, withStyles} from '@material-ui/core/styles'
 import {useState} from 'react'
@@ -31,7 +32,6 @@ import Tab from '@material-ui/core/Tab'
 import PeopleIcon from '@material-ui/icons/People'
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
 import LanguageIcon from '@material-ui/icons/Language'
-import PropTypes from 'prop-types'
 
 const drawerWidth = 240
 
@@ -208,12 +208,6 @@ function TabPanel(props) {
             )}
         </div>
     )
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
 }
 
 function a11yProps(index) {
