@@ -15,6 +15,7 @@ import {
     ListItemText,
     Toolbar,
     Typography,
+    Box,
 } from '@material-ui/core'
 import {fade, makeStyles, useTheme, withStyles} from '@material-ui/core/styles'
 import {useState} from 'react'
@@ -189,6 +190,33 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+function TabPanel(props) {
+    const {children, value, index, ...other} = props
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    )
+}
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    }
+}
+
 export default function MainHeader() {
     const classes = useStyles()
     const theme = useTheme()
@@ -214,6 +242,8 @@ export default function MainHeader() {
     const exampleClick = () => {
         console.log('Nick')
     }
+
+
     const drawer = (
         <div>
             <ThemeProvider theme={themeDarkmode}>
@@ -243,31 +273,34 @@ export default function MainHeader() {
                             aria-label="scrollable prevent tabs example"
                             className={{root: classes.tab}}
                         >
-                            <AntTab icon={<PeopleIcon/>}/>
-                            <AntTab icon={<EmojiPeopleIcon/>}/>
-                            <AntTab icon={<LanguageIcon/>}/>
+                            <AntTab icon={<PeopleIcon/>} {...a11yProps(0)}/>
+                            <AntTab icon={<EmojiPeopleIcon/>} {...a11yProps(1)}/>
+                            <AntTab icon={<LanguageIcon/>} {...a11yProps(2)}/>
                         </Tabs>
                     </Paper>
                 </div>
                 <List className={classes.ListItem}>
-                    <ListItem button onClick={exampleClick}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <AccountCircleIcon/>
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary="Klasse 123" secondary="Schick lösige"/>
-                    </ListItem>
-                    <ListItem button onClick={exampleClick}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <AccountCircleIcon/>
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary="Klasse12345" secondary="Chömet On"/>
-                    </ListItem>
+                    <TabPanel index={tabValue} value={0}>
+                        <ListItem button onClick={exampleClick}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <AccountCircleIcon/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Klasse 123" secondary="Schick lösige"/>
+                        </ListItem>
+                    </TabPanel>
+                    <TabPanel index={tabValue} value={1}>
+                        <ListItem button onClick={exampleClick}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <AccountCircleIcon/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Fabian" secondary="Chömet On"/>
+                        </ListItem>
+                    </TabPanel>
                 </List>
-                )
             </ThemeProvider>
         </div>
     )
