@@ -31,6 +31,7 @@ import Tab from '@material-ui/core/Tab'
 import PeopleIcon from '@material-ui/icons/People'
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
 import LanguageIcon from '@material-ui/icons/Language'
+import SignOut from "../Authentication/SignOut.component";
 
 const drawerWidth = 240
 
@@ -190,11 +191,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function MainHeader() {
-    const classes = useStyles()
-    const theme = useTheme()
-    const [mobileOpen, setMobileOpen] = useState(false)
-    const [clicked, setClicked] = useState(false)
-    const [tabValue, setTabValue] = useState(1)
+    const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [tabValue, setTabValue] = useState(1);
 
     const themeDarkmode = createMuiTheme({
         palette: {
@@ -311,14 +312,15 @@ export default function MainHeader() {
                                 <Brightness2Icon/>
                             </IconButton>
                         )}
-                        <IconButton
+                        {/* <IconButton
                             edge="end"
                             className={classes.profile}
                             color="inherit"
                             aria-label="profile"
                         >
                             <AccountCircleIcon/>
-                        </IconButton>
+                        </IconButton>*/}
+                        <SignOut/>
                     </Toolbar>
                 </AppBar>
                 <nav className={classes.drawer} aria-label="mailbox folders">

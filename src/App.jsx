@@ -1,6 +1,10 @@
 import './App.css';
 import MainHeader from './components/MainHeader/MainHeader.component'
-import {useState} from 'react'
+import {useState} from 'react';
+import SignIn from "./components/Authentication/SignIn.component";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import {auth} from "./server/firebaseConfig";
+import GlobalChat from "./server/GlobalChat";
 
 function App() {
     const [clickHamburger, setClickHamburger] = useState(false);
@@ -14,15 +18,18 @@ function App() {
         setClickDarkmode(!clickDarkmode)
     }
 
+    const [user] = useAuthState(auth);
+
     return (
         <div className="App">
-            <MainHeader onClickHamburger={() => clickedHamburger()} 
-            hamburger={clickHamburger} 
-            onClickDarkmode={() => clickedDarkmode()}
-            darkmode={clickDarkmode}
-            />
+            {
+                user ? <MainHeader onClickHamburger={() => clickedHamburger()}
+                                   hamburger={clickHamburger}
+                                   onClickDarkmode={() => clickedDarkmode()}
+                                   darkmode={clickDarkmode}
+                /> : <SignIn />
+            }
         </div>
-    
     );
 }
 

@@ -1,5 +1,10 @@
 import firebase from 'firebase/app';
 
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
+
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBUWkuLQFz_hbJxQS6LsMf2o6BD417-FUM',
   authDomain: 'umessage-55d40.firebaseapp.com',
@@ -12,4 +17,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export { firebase };
+const auth = firebase.auth();
+const db = firebase.firestore();
+const analytics = firebase.analytics();
+
+
+export { firebase, auth, db, analytics };

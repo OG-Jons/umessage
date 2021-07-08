@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatBox() {
+export default function ChatBox({send}) {
   const classes = useStyles();
 
   const [input, setInput] = useState('');
@@ -45,7 +45,7 @@ export default function ChatBox() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim() === '') return;
-    console.log(input);
+    send(input);
     setInput('');
   };
 
