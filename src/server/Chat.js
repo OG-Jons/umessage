@@ -77,33 +77,86 @@
 //
 // export { Chat, chatConverter, getChatsFromUID };
 
-const {db} = require("./firebaseConfig");
+import {auth, db, firebase} from "./firebaseConfig";
 
-const getChats = (uid) => {
-
-}
+const getChatsFromUID = async (uid) => {
+    let result = [];
+    await db.collection("chat")
+        .where("users", "array-contains", uid)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                result.push(doc.data());
+            });
+        }).catch((error) => {
+            return ("Error getting documents: ", error);
+        });
+    return result;
+};
 
 const getMessages = async (chat) => {
-  const fetchedChats = [];
-  await db.collection('chat')
-      .doc('bu6oma6GIOiqAIPRLWk9')
-      .collection('messages')
-      .get()
-      .then(response => {
-        response.forEach(document => {
-          const fetchedChat = {
-            id: document.id,
-            ...document.data()
-          };
-          fetchedChats.push(fetchedChat);
+    let fetchedChats = [];
+    await db.collection('chat')
+        .doc(chat)
+        .collection('messages')
+        .get()
+        .then(response => {
+            response.forEach(document => {
+                const fetchedChat = {
+                    id: document.id,
+                    ...document.data()
+                };
+                fetchedChats.push(fetchedChat);
+                console.log(fetchedChats);
+            });
+        })
+        .catch(error => {
+            console.log(error);
         });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  return fetchedChats;
+    return fetchedChats;
+};
+
+const getGlobalMessages = async () => {
+    const fetchedChats = [];
+    await db.collection('chat')
+        .doc('globalchat')
+        .collection('messages')
+        .get()
+        .then(response => {
+            response.forEach(document => {
+                const fetchedChat = {
+                    id: document.id,
+                    ...document.data()
+                };
+                fetchedChats.push(fetchedChat);
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    return fetchedChats;
+};
+
+const setNewMessage = async (msg, chat) => {
+    const {uid, photoURL, displayName} = auth.currentUser;
+
+    const messagesRef =
+        db.collection('chat')
+        .doc(chat)
+        .collection('messages');
+
+    await messagesRef.add({
+        text: msg,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        photoURL,
+        displayName
+    });
 };
 
 export {
-  getMessages
-}
+    getChatsFromUID,
+    getMessages,
+    getGlobalMessages,
+    setNewMessage
+};

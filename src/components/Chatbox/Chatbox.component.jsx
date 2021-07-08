@@ -14,39 +14,39 @@ export default function Chatbox() {
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 3,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 4,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 5,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 6,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 7,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 8,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 9,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 10,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 11,
             message: ' Fabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasst',
             name: 'Nick'
         },
