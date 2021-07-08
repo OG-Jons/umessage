@@ -1,11 +1,20 @@
 class Message {
-    constructor (message, picture, uid ) {
+    constructor (id, message, picture, uid ) {
+        this.id = id;
         this.message = message;
         this.picture = picture;
         this.uid = uid;
     }
+
     toString() {
-        return this.message + ', ' + this.picture + ', ' + this.uid;
+        return "id: " +
+        this.id +
+        "message: " +
+        this.message +
+        "\n, picture: " +
+        this.picture +
+        "\n, uid: " +
+        this.uid;
     }
 }
 
@@ -19,7 +28,7 @@ var messageConverter = {
     },
     fromFirestore: function(snapshot, options){
         const data = snapshot.data(options);
-        return new Message(data.name, data.state, data.country);
+        return new Message(snapshot.id, data.message, data.picture, data.uid);
     }
 };
 
