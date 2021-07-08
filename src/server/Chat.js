@@ -79,7 +79,8 @@
 
 import {auth, db, firebase} from "./firebaseConfig";
 
-const getChatsFromUID = async (uid) => {
+const getChatsFromUID = async () => {
+    const {uid} = auth.currentUser;
     let result = [];
     await db.collection("chat")
         .where("users", "array-contains", uid)
@@ -142,8 +143,8 @@ const setNewMessage = async (msg, chat) => {
 
     const messagesRef =
         db.collection('chat')
-        .doc(chat)
-        .collection('messages');
+            .doc(chat)
+            .collection('messages');
 
     await messagesRef.add({
         text: msg,
@@ -154,9 +155,19 @@ const setNewMessage = async (msg, chat) => {
     });
 };
 
+const createGroup = async () => {
+    //  TODO: add logic to create a new group
+};
+
+const deleteGroup = async () => {
+    // TODO: add logic to delete a group
+};
+
 export {
     getChatsFromUID,
     getMessages,
     getGlobalMessages,
-    setNewMessage
+    setNewMessage,
+    createGroup,
+    deleteGroup
 };
