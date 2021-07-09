@@ -16,7 +16,7 @@ export default function Chatbox(props) {
 		<div>
 			<HeaderChatBox/>
 			<Message messages={messages} />
-			<TextFieldChatbox/>
+			<TextFieldChatbox chat={chat}/>
 		</div>
 	);
 }

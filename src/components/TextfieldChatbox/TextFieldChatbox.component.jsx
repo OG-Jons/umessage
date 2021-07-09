@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ChatBox() {
+export default function ChatBox(props) {
+	const {chat} = props;
 	const classes = useStyles();
 
 	const [input, setInput] = useState('');
@@ -46,8 +47,7 @@ export default function ChatBox() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (input.trim() === '') return;
-		// setNewMessage(input, 'bu6oma6GIOiqAIPRLWk9').then(r => r);
-		setNewMessage(input, 'globalchat').then(r => r);
+		setNewMessage(input, chat).then(r => r);
 		setInput('');
 	};
 

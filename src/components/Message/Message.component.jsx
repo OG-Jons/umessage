@@ -4,8 +4,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import {Box} from '@material-ui/core';
 import './Message.style.css';
-
-
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {auth} from '../../server/firebaseConfig';
 
 const useStyles = makeStyles({
 	message: {
@@ -47,6 +47,7 @@ const useStyles = makeStyles({
 });
 
 export default function Message(props) {
+	const [user] = useAuthState(auth);
 	const {messages} = props;
 	const classes = useStyles();
 
@@ -54,7 +55,7 @@ export default function Message(props) {
 		return (
 			<Box className={`${classes.root} chatBox`}>
 				{messages.map((message, idx) => (
-					<div className={`${classes.parent} ${message.id === 1 ? classes.send : classes.received}`}
+					<div className={`${classes.parent} ${message.uid === user.uid ? classes.send : classes.received}`}
 						 key={idx}>
 						<Card className={classes.message} variant="outlined" height={'75%'}>
 							<CardContent>

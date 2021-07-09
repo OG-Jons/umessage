@@ -38,6 +38,7 @@ export default function Main() {
 	const theme = useTheme();
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const [clicked, setClicked] = useState(false);
+	const [currentChat, setCurrentChat] = useState('globalchat');
 
 	const themeDarkmode = createMuiTheme({
 		palette: {
@@ -69,7 +70,7 @@ export default function Main() {
 								keepMounted: true, // Better open performance on mobile.
 							}}
 						>
-							<Sidebar themeDarkmode={themeDarkmode} />
+							<Sidebar themeDarkmode={themeDarkmode} setChat={setCurrentChat} />
 						</Drawer>
 					</Hidden>
 					<Hidden xsDown implementation="css">
@@ -80,13 +81,13 @@ export default function Main() {
 							variant="permanent"
 							open
 						>
-							<Sidebar themeDarkmode={themeDarkmode} />
+							<Sidebar themeDarkmode={themeDarkmode} setChat={setCurrentChat} />
 						</Drawer>
 					</Hidden>
 				</nav>
 				<main className={classes.content}>
 					<div className={classes.toolbar} />
-					<ChatBox chat={'globalchat'} />
+					<ChatBox chat={currentChat} />
 				</main>
 			</ThemeProvider>
 		</div>
