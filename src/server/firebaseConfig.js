@@ -3,13 +3,13 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: process.env.REACT_APP_API_KEY,
-	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-	projectId: process.env.REACT_APP_PROJECT_ID,
-	storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-	appId: process.env.REACT_APP_APP_ID,
-	measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+	apiKey: 'AIzaSyBUWkuLQFz_hbJxQS6LsMf2o6BD417-FUM',
+	authDomain: 'umessage-55d40.firebaseapp.com',
+	projectId: 'umessage-55d40',
+	storageBucket: 'umessage-55d40.appspot.com',
+	messagingSenderId: '696598137954',
+	appId: '1:696598137954:web:1a104f3b9001d59804953b',
+	measurementId: 'G-Z2YMF1CXZ8'
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -18,4 +18,4 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 
 
-export { firebase, db, auth };
+export {firebase, db, auth};
