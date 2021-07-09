@@ -3,7 +3,7 @@ import MainHeader from './components/MainHeader/MainHeader.component';
 import {useEffect, useState} from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth} from "./server/firebaseConfig";
-import {getGlobalMessages, getMessages} from './server/Chat';
+import {getChatsFromUID, getGlobalMessages, getMessages} from './server/Chat';
 import SignInComponent from "./components/Authentication/SignIn.component";
 
 function App() {
