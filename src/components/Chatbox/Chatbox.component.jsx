@@ -1,7 +1,7 @@
-import TextFieldChatbox from '../TextfieldChatbox/TextFieldChatbox.component'
-import HeaderChatBox from '../HeaderChatbox/HeaderChatBox.component'
-import './Chatbox.style.css'
-import Message from '../Message/Message.component'
+import TextFieldChatbox from '../TextfieldChatbox/TextFieldChatbox.component';
+import HeaderChatBox from '../HeaderChatbox/HeaderChatBox.component';
+import './Chatbox.style.css';
+import Message from '../Message/Message.component';
 
 export default function Chatbox() {
     const data = [{
@@ -14,43 +14,43 @@ export default function Chatbox() {
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 3,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 4,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 5,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 6,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 7,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 8,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 9,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 10,
             message: 'Fabian isch en spasst',
             name: 'Nick'
         },{
-            id: 2,
+            id: 11,
             message: ' Fabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasstFabian isch en spasst',
             name: 'Nick'
         },
-    ]
+    ];
 
     return (
         <div>
@@ -58,5 +58,5 @@ export default function Chatbox() {
             <Message messages={data} />
             <TextFieldChatbox/>
         </div>
-    )
+    );
 }

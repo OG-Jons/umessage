@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from "@material-ui/icons/Send";
+import {setNewMessage} from "../../server/Chat";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +46,8 @@ export default function ChatBox() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim() === '') return;
-    console.log(input);
+    // setNewMessage(input, 'bu6oma6GIOiqAIPRLWk9').then(r => r);
+    setNewMessage(input, 'globalchat').then(r => r);
     setInput('');
   };
 

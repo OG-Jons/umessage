@@ -15,24 +15,25 @@ import {
     ListItemText,
     Toolbar,
     Typography,
-} from '@material-ui/core'
-import {fade, makeStyles, useTheme, withStyles} from '@material-ui/core/styles'
-import {useState} from 'react'
-import ChatBox from '../Chatbox/Chatbox.component'
-import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import SearchIcon from '@material-ui/icons/Search'
-import WbSunnyIcon from '@material-ui/icons/WbSunny'
-import Brightness2Icon from '@material-ui/icons/Brightness2'
-import {deepPurple} from '@material-ui/core/colors'
-import Paper from '@material-ui/core/Paper'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import PeopleIcon from '@material-ui/icons/People'
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
-import LanguageIcon from '@material-ui/icons/Language'
+} from '@material-ui/core';
+import {fade, makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
+import {useState} from 'react';
+import ChatBox from '../Chatbox/Chatbox.component';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SearchIcon from '@material-ui/icons/Search';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
+import {deepPurple} from '@material-ui/core/colors';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PeopleIcon from '@material-ui/icons/People';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import LanguageIcon from '@material-ui/icons/Language';
+import SignOut from "../Authentication/SignOut.component";
 
-const drawerWidth = 240
+const drawerWidth = 240;
 
 const AntTab = withStyles((theme) => ({
     root: {
@@ -70,7 +71,7 @@ const AntTab = withStyles((theme) => ({
         },
     },
     selected: {},
-}))((props) => <Tab disableRipple {...props} />)
+}))((props) => <Tab disableRipple {...props} />);
 
 
 const useStyles = makeStyles((theme) => ({
@@ -187,33 +188,33 @@ const useStyles = makeStyles((theme) => ({
     button: {
         margin: '1%',
     },
-}))
+}));
 
 export default function MainHeader() {
-    const classes = useStyles()
-    const theme = useTheme()
-    const [mobileOpen, setMobileOpen] = useState(false)
-    const [clicked, setClicked] = useState(false)
-    const [tabValue, setTabValue] = useState(1)
+    const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [tabValue, setTabValue] = useState(1);
 
     const themeDarkmode = createMuiTheme({
         palette: {
             type: clicked ? 'dark' : 'light',
         },
-    })
+    });
 
     const handleTabChange = (event, newValue) => {
-        setTabValue(newValue)
-    }
+        setTabValue(newValue);
+    };
 
     const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen)
-    }
+        setMobileOpen(!mobileOpen);
+    };
 
     //Activates again the Global Button. And deactivates the Button depending on which Chat has been clicked.
     const exampleClick = () => {
-        console.log('Nick')
-    }
+        console.log('Nick');
+    };
     const drawer = (
         <div>
             <ThemeProvider theme={themeDarkmode}>
@@ -241,7 +242,7 @@ export default function MainHeader() {
                             variant="fullWidth"
                             scrollButtons="off"
                             aria-label="scrollable prevent tabs example"
-                            className={{root: classes.tab}}
+                            style={{root: classes.tab}}
                         >
                             <AntTab icon={<PeopleIcon/>}/>
                             <AntTab icon={<EmojiPeopleIcon/>}/>
@@ -267,10 +268,9 @@ export default function MainHeader() {
                         <ListItemText primary="Klasse12345" secondary="Chömet On"/>
                     </ListItem>
                 </List>
-                )
             </ThemeProvider>
         </div>
-    )
+    );
 
     return (
         <div className={classes.root}>
@@ -311,14 +311,7 @@ export default function MainHeader() {
                                 <Brightness2Icon/>
                             </IconButton>
                         )}
-                        <IconButton
-                            edge="end"
-                            className={classes.profile}
-                            color="inherit"
-                            aria-label="profile"
-                        >
-                            <AccountCircleIcon/>
-                        </IconButton>
+                        <SignOut/>
                     </Toolbar>
                 </AppBar>
                 <nav className={classes.drawer} aria-label="mailbox folders">
@@ -357,5 +350,5 @@ export default function MainHeader() {
                 </main>
             </ThemeProvider>
         </div>
-    )
+    );
 }
