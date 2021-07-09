@@ -4,10 +4,10 @@ import {
 } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import MenuIcon from '@material-ui/icons/Menu';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import SignOut from '../Authentication/SignOut.component';
 
 const drawerWidth = 240;
 
@@ -81,14 +81,7 @@ export default function Header(props) {
 						<Brightness2Icon />
 					</IconButton>
 				)}
-				<IconButton
-					edge="end"
-					className={classes.profile}
-					color="inherit"
-					aria-label="profile"
-				>
-					<AccountCircleIcon />
-				</IconButton>
+				<SignOut />
 			</Toolbar>
 		</AppBar>
 	);

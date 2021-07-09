@@ -1,8 +1,12 @@
 import './App.css';
-import { useState } from 'react';
+import {useState} from 'react';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {auth} from './server/firebaseConfig';
+import SignInComponent from './components/Authentication/SignIn.component';
 import Main from './components/Main/Main.component';
 
 function App() {
+	const [user] = useAuthState(auth);
 	const [clickHamburger, setClickHamburger] = useState(false);
 	const [clickDarkmode, setClickDarkmode] = useState(false);
 
@@ -14,14 +18,21 @@ function App() {
 		setClickDarkmode(!clickDarkmode);
 	};
 
+
+
 	return (
 		<div className="App">
-			<Main
-				onClickHamburger={() => clickedHamburger()}
-				hamburger={clickHamburger}
-				onClickDarkmode={() => clickedDarkmode()}
-				darkmode={clickDarkmode}
-			/>
+			{
+				user ? <>
+					<Main
+						onClickHamburger={() => clickedHamburger()}
+						hamburger={clickHamburger}
+						onClickDarkmode={() => clickedDarkmode()}
+						darkmode={clickDarkmode}
+					/>
+				</>
+					: <SignInComponent/>
+			}
 		</div>
 	);
 }

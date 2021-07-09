@@ -8,7 +8,7 @@
     "browser": true,
     "es2021": true
   },
-  "ignorePatterns": ["**.css"],
+  "ignorePatterns": ["**.css", "**/build/**", "**/public/**"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended"
@@ -36,6 +36,7 @@
       "warn",
       "always"
     ],
+    "no-unused-vars": "warn",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "no-mixed-spaces-and-tabs": "off"

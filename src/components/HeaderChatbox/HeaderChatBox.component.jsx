@@ -21,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function HeaderChatBox() {
+export default function HeaderChatBox(props) {
+	const {title} = props;
 	const classes = useStyles();
 	return (
 		<Paper className={classes.root}>
-			<Typography variant="h5">Max Mustermann</Typography>
+			<Typography variant="h5">{title}</Typography>
 		</Paper>
 	);
 }

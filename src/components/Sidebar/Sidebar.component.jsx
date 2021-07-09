@@ -11,7 +11,7 @@ import {
 	Typography
 } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
+import {fade, makeStyles, withStyles} from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -19,7 +19,10 @@ import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import LanguageIcon from '@material-ui/icons/Language';
 import PeopleIcon from '@material-ui/icons/People';
 import SearchIcon from '@material-ui/icons/Search';
-import { useState } from 'react';
+import {useState} from 'react';
+import {auth, db} from '../../server/firebaseConfig';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {useCollectionData} from 'react-firebase-hooks/firestore';
 
 const AntTab = withStyles((theme) => ({
 	root: {
@@ -153,76 +156,119 @@ function a11yProps(index) {
 }
 
 export default function Sidebar(props) {
+	const {themeDarkmode, setChat} = props;
+	const [user] = useAuthState(auth);
 	const classes = useStyles();
-	const [tabValue, setTabValue] = useState(1);
+	const [tabValue, setTabValue] = useState(2);
+
+	const chatRef = db.collection('chat');
+
+	const singleChatsQuery = chatRef
+		.where('users', 'array-contains', user.uid)
+		.where('global', '==', false)
+		.where('groupChat', '==', false);
+	const [singleChats] = useCollectionData(singleChatsQuery, {idField: 'id'});
+
+	const groupChatsQuery = chatRef
+		.where('users', 'array-contains', user.uid)
+		.where('global', '==', false)
+		.where('groupChat', '==', true);
+	const [groupChats] = useCollectionData(groupChatsQuery, {idField: 'id'});
+
+	const globalChatQuery = chatRef
+		.where('global', '==', true);
+	const [globalChat] = useCollectionData(globalChatQuery, {idField: 'id'});
 
 	const handleTabChange = (event, newValue) => {
 		setTabValue(newValue);
 	};
 
 	//Activates again the Global Button. And deactivates the Button depending on which Chat has been clicked.
-	const exampleClick = () => {
-		console.log('Nick');
+	const changeChat = (docID, title) => {
+		setChat({
+			docID: docID,
+			title: title
+		});
 	};
 
-	return (
-		<div>
-			<ThemeProvider theme={props.themeDarkmode}>
-				<div className={classes.toolbar} />
-				<Divider />
-				<div className={classes.search}>
-					<div className={classes.searchIcon}>
-						<SearchIcon />
+	if (singleChats, groupChats, globalChat) {
+		return (
+			<div>
+				<ThemeProvider theme={themeDarkmode}>
+					<div className={classes.toolbar}/>
+					<Divider/>
+					<div className={classes.search}>
+						<div className={classes.searchIcon}>
+							<SearchIcon/>
+						</div>
+						<InputBase
+							placeholder="Search…"
+							classes={{
+								root: classes.inputRoot,
+								input: classes.inputInput,
+							}}
+							inputProps={{'aria-label': 'search'}}
+						/>
 					</div>
-					<InputBase
-						placeholder="Search…"
-						classes={{
-							root: classes.inputRoot,
-							input: classes.inputInput,
-						}}
-						inputProps={{ 'aria-label': 'search' }}
-					/>
-				</div>
-				<div className={classes.buttons}>
-					<Paper square>
-						<Tabs
-							value={tabValue}
-							indicatorColor="secondary"
-							onChange={handleTabChange}
-							variant="fullWidth"
-							scrollButtons="off"
-							aria-label="scrollable prevent tabs example"
-							className={{ root: classes.tab }}
-						>
-							<AntTab icon={<PeopleIcon/>} {...a11yProps(0)}/>
-							<AntTab icon={<EmojiPeopleIcon/>} {...a11yProps(1)}/>
-							<AntTab icon={<LanguageIcon/>} {...a11yProps(2)}/>
-						</Tabs>
-					</Paper>
-				</div>
-				<List className={classes.listItem}>
-					<TabPanel index={tabValue} value={0}>
-						<ListItem button onClick={exampleClick}>
-							<ListItemAvatar>
-								<Avatar>
-									<AccountCircleIcon/>
-								</Avatar>
-							</ListItemAvatar>
-							<ListItemText primary="Klasse 123" secondary="Schick lösige"/>
-						</ListItem>
-					</TabPanel>
-					<TabPanel index={tabValue} value={1}>
-						<ListItem button onClick={exampleClick}>
-							<ListItemAvatar>
-								<Avatar>
-									<AccountCircleIcon/>
-								</Avatar>
-							</ListItemAvatar>
-							<ListItemText primary="Fabian" secondary="Chömet On"/>
-						</ListItem>
-					</TabPanel>
-				</List>
-			</ThemeProvider>
-		</div>
-	);
+					<div className={classes.buttons}>
+						<Paper square>
+							<Tabs
+								value={tabValue}
+								indicatorColor="secondary"
+								onChange={handleTabChange}
+								variant="fullWidth"
+								scrollButtons="off"
+								aria-label="scrollable prevent tabs example"
+								style={{root: classes.tab}}
+							>
+								<AntTab icon={<PeopleIcon/>} {...a11yProps(0)}/>
+								<AntTab icon={<EmojiPeopleIcon/>} {...a11yProps(1)}/>
+								<AntTab icon={<LanguageIcon/>} {...a11yProps(2)}/>
+							</Tabs>
+						</Paper>
+					</div>
+					<List className={classes.listItem}>
+						<TabPanel index={tabValue} value={0}>
+							{
+								groupChats.map((chat, idx) => (
+									<ListItem key={idx} button onClick={() => changeChat(chat.id, chat.title)}>
+										<ListItemAvatar>
+											<Avatar>
+												<AccountCircleIcon/>
+											</Avatar>
+										</ListItemAvatar>
+										<ListItemText primary={chat.title}/>
+									</ListItem>
+								))
+							}
+						</TabPanel>
+						<TabPanel index={tabValue} value={1}>
+							{
+								singleChats.map((chat, idx) => (
+									<ListItem key={idx} button onClick={() => changeChat(chat.id, chat.title)}>
+										<ListItemAvatar>
+											<Avatar>
+												<AccountCircleIcon/>
+											</Avatar>
+										</ListItemAvatar>
+										<ListItemText primary={chat.title}/>
+									</ListItem>
+								))
+							}
+						</TabPanel>
+						<TabPanel index={tabValue} value={2}>
+							<ListItem button onClick={() => changeChat('globalchat', 'Globalchat')}>
+								<ListItemAvatar>
+									<Avatar>
+										<AccountCircleIcon/>
+									</Avatar>
+								</ListItemAvatar>
+								<ListItemText primary={'Globalchat'}/>
+							</ListItem>
+						</TabPanel>
+					</List>
+				</ThemeProvider>
+			</div>
+		);
+	} else return <></>;
 }
