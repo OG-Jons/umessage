@@ -79,21 +79,6 @@
 
 import {auth, db, firebase} from './firebaseConfig';
 
-const getChatsFromUID = async (uid) => {
-	let result = [];
-
-	/* .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                result.push(doc.data());
-            });
-        }).catch((error) => {
-            return ("Error getting documents: ", error);
-        }); */
-	// console.log("Yeet", result)
-	return 'a';
-};
-
 const getMessages = async (chat) => {
 	let fetchedChats = [];
 	await db.collection('chat')
@@ -163,7 +148,6 @@ const deleteGroup = async () => {
 };
 
 export {
-	getChatsFromUID,
 	getMessages,
 	getGlobalMessages,
 	setNewMessage,

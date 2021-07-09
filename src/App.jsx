@@ -10,27 +10,29 @@ function App() {
 	const [clickHamburger, setClickHamburger] = useState(false);
 	const [clickDarkmode, setClickDarkmode] = useState(false);
 
-    const clickedHamburger = () => {
-        setClickHamburger(!clickHamburger)
-    }
+	const clickedHamburger = () => {
+		setClickHamburger(!clickHamburger);
+	};
 
-    const clickedDarkmode = () => {
-        setClickDarkmode(!clickDarkmode)
-    }
+	const clickedDarkmode = () => {
+		setClickDarkmode(!clickDarkmode);
+	};
+
+
 
 	return (
 		<div className="App">
 			{
-                user ? <>
-                <Main
-				onClickHamburger={() => clickedHamburger()}
-				hamburger={clickHamburger}
-				onClickDarkmode={() => clickedDarkmode()}
-				darkmode={clickDarkmode}
-			/>
-            </>
-            : <SignInComponent/>
-            }
+				user ? <>
+					<Main
+						onClickHamburger={() => clickedHamburger()}
+						hamburger={clickHamburger}
+						onClickDarkmode={() => clickedDarkmode()}
+						darkmode={clickDarkmode}
+					/>
+				</>
+					: <SignInComponent/>
+			}
 		</div>
 	);
 }
