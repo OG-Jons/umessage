@@ -7,6 +7,8 @@ import {
   ListItemAvatar,
   ListItemText,
   ThemeProvider,
+  Box,
+  Typography
 } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import { fade, makeStyles, withStyles } from "@material-ui/core/styles";
@@ -123,6 +125,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function TabPanel(props) {
+  const {children, value, index, ...other} = props
+
+  return (
+      <div
+          role="tabpanel"
+          hidden={value !== index}
+          id={`simple-tabpanel-${index}`}
+          aria-labelledby={`simple-tab-${index}`}
+          {...other}
+      >
+          {value === index && (
+              <Box p={0}>
+                  <Typography>{children}</Typography>
+              </Box>
+          )}
+      </div>
+  )
+}
+
+function a11yProps(index) {
+  return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+  }
+}
+
 export default function DrawerTemplate(props) {
   const classes = useStyles();
   const [tabValue, setTabValue] = useState(1);
@@ -155,39 +184,43 @@ export default function DrawerTemplate(props) {
           />
         </div>
         <div className={classes.buttons}>
-          <Paper square>
-            <Tabs
-              value={tabValue}
-              indicatorColor="secondary"
-              onChange={handleTabChange}
-              variant="fullWidth"
-              scrollButtons="off"
-              aria-label="scrollable prevent tabs example"
-              className={{ root: classes.tab }}
-            >
-              <AntTab icon={<PeopleIcon />} />
-              <AntTab icon={<EmojiPeopleIcon />} />
-              <AntTab icon={<LanguageIcon />} />
-            </Tabs>
-          </Paper>
-        </div>
-        <List className={classes.listItem}>
-          <ListItem button onClick={exampleClick}>
-            <ListItemAvatar>
-              <Avatar>
-                <AccountCircleIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Klasse 123" secondary="Schick lösige" />
-          </ListItem>
-          <ListItem button onClick={exampleClick}>
-            <ListItemAvatar>
-              <Avatar>
-                <AccountCircleIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Klasse12345" secondary="Chömet On" />
-          </ListItem>
+					<Paper square>
+						<Tabs
+							value={tabValue}
+							indicatorColor="secondary"
+							onChange={handleTabChange}
+							variant="fullWidth"
+							scrollButtons="off"
+							aria-label="scrollable prevent tabs example"
+							className={{ root: classes.tab }}
+						>
+							<AntTab icon={<PeopleIcon/>} {...a11yProps(0)}/>
+							<AntTab icon={<EmojiPeopleIcon/>} {...a11yProps(1)}/>
+							<AntTab icon={<LanguageIcon/>} {...a11yProps(2)}/>
+						</Tabs>
+					</Paper>
+				</div>
+				<List className={classes.listItem}>
+					<TabPanel index={tabValue} value={0}>
+						<ListItem button onClick={exampleClick}>
+							<ListItemAvatar>
+								<Avatar>
+									<AccountCircleIcon/>
+								</Avatar>
+							</ListItemAvatar>
+							<ListItemText primary="Klasse 123" secondary="Schick lösige"/>
+						</ListItem>
+					</TabPanel>
+					<TabPanel index={tabValue} value={1}>
+						<ListItem button onClick={exampleClick}>
+							<ListItemAvatar>
+								<Avatar>
+									<AccountCircleIcon/>
+								</Avatar>
+							</ListItemAvatar>
+							<ListItemText primary="Fabian" secondary="Chömet On"/>
+						</ListItem>
+					</TabPanel>
         </List>
       </ThemeProvider>
     </div>
