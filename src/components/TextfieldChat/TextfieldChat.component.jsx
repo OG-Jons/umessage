@@ -1,8 +1,8 @@
 export default function TextfieldChat() {
 
-    return (
-        <>
+	return (
+		<>
             Textfield Chat
-        </>
-    );
+		</>
+	);
 }
