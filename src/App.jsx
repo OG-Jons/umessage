@@ -1,6 +1,6 @@
 import './App.css';
-import MainHeader from './components/MainHeader/MainHeader.component';
-import {useState} from 'react';
+import { useState } from 'react';
+import Main from './components/Main/Main.component';
 
 function App() {
 	const [clickHamburger, setClickHamburger] = useState(false);
@@ -16,13 +16,13 @@ function App() {
 
 	return (
 		<div className="App">
-			<MainHeader onClickHamburger={() => clickedHamburger()} 
-				hamburger={clickHamburger} 
+			<Main
+				onClickHamburger={() => clickedHamburger()}
+				hamburger={clickHamburger}
 				onClickDarkmode={() => clickedDarkmode()}
 				darkmode={clickDarkmode}
 			/>
 		</div>
-    
 	);
 }
 

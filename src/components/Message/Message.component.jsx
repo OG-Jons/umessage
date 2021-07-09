@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 	root: {
 		width: '100%',
 		height: '91ex',
-		overflow: 'scroll',
+		overflowY: 'scroll',
 		zIndex: -1,
 		paddingBottom: 1
 	},
