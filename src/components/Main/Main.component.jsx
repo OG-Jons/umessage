@@ -86,7 +86,7 @@ export default function Main() {
 				</nav>
 				<main className={classes.content}>
 					<div className={classes.toolbar} />
-					<ChatBox />
+					<ChatBox chat={'globalchat'} />
 				</main>
 			</ThemeProvider>
 		</div>

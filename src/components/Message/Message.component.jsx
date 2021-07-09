@@ -46,26 +46,29 @@ const useStyles = makeStyles({
 
 });
 
-export default function Message({messages}) {
+export default function Message(props) {
+	const {messages} = props;
 	const classes = useStyles();
 
-	return (
-		<Box className={`${classes.root} chatBox`}>
-			{messages.map(message => (
-				<div className={`${classes.parent} ${message.id === 1 ? classes.send : classes.received}`}
-					key={message.id}>
-					<Card className={classes.message} variant="outlined" height={'75%'}>
-						<CardContent>
-							<Typography className={classes.title} color="textSecondary" gutterBottom>
-								{message.name}
-							</Typography>
-							<Typography variant="body2" component="p">
-								{message.message}
-							</Typography>
-						</CardContent>
-					</Card>
-				</div>
-			))}
-		</Box>
-	);
+	if (messages) {
+		return (
+			<Box className={`${classes.root} chatBox`}>
+				{messages.map((message, idx) => (
+					<div className={`${classes.parent} ${message.id === 1 ? classes.send : classes.received}`}
+						 key={idx}>
+						<Card className={classes.message} variant="outlined" height={'75%'}>
+							<CardContent>
+								<Typography className={classes.title} color="textSecondary" gutterBottom>
+									{message.displayName}
+								</Typography>
+								<Typography variant="body2" component="p">
+									{message.text}
+								</Typography>
+							</CardContent>
+						</Card>
+					</div>
+				))}
+			</Box>
+		);
+	} else return <></>;
 }
