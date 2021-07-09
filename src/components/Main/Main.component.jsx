@@ -7,7 +7,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useState } from "react";
 import ChatBox from "../Chatbox/Chatbox.component";
-import DrawerTemplate from "../DrawerTemplate/DrawerTemplate.component";
+import Sidebar from "../Sidebar/Sidebar.component";
 import Header from "../Header/Header.component";
 
 const drawerWidth = 240;
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MainHeader() {
+export default function Main() {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -69,7 +69,7 @@ export default function MainHeader() {
                 keepMounted: true, // Better open performance on mobile.
               }}
             >
-              <DrawerTemplate themeDarkmode={themeDarkmode} />
+              <Sidebar themeDarkmode={themeDarkmode} />
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
@@ -80,7 +80,7 @@ export default function MainHeader() {
               variant="permanent"
               open
             >
-              <DrawerTemplate themeDarkmode={themeDarkmode} />
+              <Sidebar themeDarkmode={themeDarkmode} />
             </Drawer>
           </Hidden>
         </nav>
