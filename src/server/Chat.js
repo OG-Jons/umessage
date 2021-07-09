@@ -79,20 +79,19 @@
 
 import {auth, db, firebase} from "./firebaseConfig";
 
-const getChatsFromUID = async () => {
-    const {uid} = auth.currentUser;
+const getChatsFromUID = async (uid) => {
     let result = [];
-    await db.collection("chat")
-        .where("users", "array-contains", uid)
-        .get()
+    const chatsRef = db.collection("chat");
+    /* .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 result.push(doc.data());
             });
         }).catch((error) => {
             return ("Error getting documents: ", error);
-        });
-    return result;
+        }); */
+    // console.log("Yeet", result)
+    return chatsRef.where("users", "array-contains", uid);
 };
 
 const getMessages = async (chat) => {

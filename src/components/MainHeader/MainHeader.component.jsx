@@ -1,6 +1,6 @@
 import {
     Avatar,
-    createMuiTheme,
+    createTheme,
     InputBase,
     ListItemAvatar,
     ThemeProvider,
@@ -16,7 +16,7 @@ import {
     Toolbar,
     Typography,
 } from '@material-ui/core';
-import {fade, makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
+import {alpha, makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
 import {useState} from 'react';
 import ChatBox from '../Chatbox/Chatbox.component';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -121,9 +121,9 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.black, 0.15),
+        backgroundColor: alpha(theme.palette.common.black, 0.15),
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.black, 0.25),
+            backgroundColor: alpha(theme.palette.common.black, 0.25),
         },
         marginLeft: 0,
         width: '100%',
@@ -197,7 +197,7 @@ export default function MainHeader() {
     const [clicked, setClicked] = useState(false);
     const [tabValue, setTabValue] = useState(1);
 
-    const themeDarkmode = createMuiTheme({
+    const themeDarkmode = createTheme({
         palette: {
             type: clicked ? 'dark' : 'light',
         },
