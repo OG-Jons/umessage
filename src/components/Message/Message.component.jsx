@@ -70,5 +70,5 @@ export default function Message(props) {
 				))}
 			</Box>
 		);
-	} else return <></>
+	} else return <></>;
 }

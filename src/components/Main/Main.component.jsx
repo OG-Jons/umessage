@@ -38,7 +38,6 @@ export default function Main() {
 	const theme = useTheme();
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const [clicked, setClicked] = useState(false);
-	const [chat, setChat] = useState('globalchat');
 
 	const themeDarkmode = createMuiTheme({
 		palette: {
@@ -48,10 +47,6 @@ export default function Main() {
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
-	};
-
-	const changeChat = () => {
-		setChat(chat === 'globalchat' ? 'bu6oma6GIOiqAIPRLWk9': 'globalchat');
 	};
 
 	return (
@@ -91,9 +86,8 @@ export default function Main() {
 				</nav>
 				<main className={classes.content}>
 					<div className={classes.toolbar} />
-					<ChatBox chat={chat} />
+					<ChatBox chat={'globalchat'} />
 				</main>
-				<button onClick={changeChat}>Change Chat</button>
 			</ThemeProvider>
 		</div>
 	);
