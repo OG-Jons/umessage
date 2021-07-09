@@ -55,7 +55,7 @@ export default function Header(props) {
 					onClick={props.handleDrawerToggle}
 					className={classes.menuButton}
 				>
-					<MenuIcon />
+					<MenuIcon style={{color: 'white'}}/>
 				</IconButton>
 				<Typography variant="h6" noWrap className={classes.logo}>
             uMessage
