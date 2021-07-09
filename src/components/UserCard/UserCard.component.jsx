@@ -1,8 +1,8 @@
 export default function Usercard() {
 
-    return (
-        <>
+	return (
+		<>
             Usercard
-        </>
-    )
+		</>
+	);
 }
