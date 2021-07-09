@@ -184,8 +184,11 @@ export default function Sidebar(props) {
 	};
 
 	//Activates again the Global Button. And deactivates the Button depending on which Chat has been clicked.
-	const changeChat = (docID) => {
-		setChat(docID);
+	const changeChat = (docID, title) => {
+		setChat({
+			docID: docID,
+			title: title
+		});
 	};
 
 	if (singleChats, groupChats, globalChat) {
@@ -228,7 +231,7 @@ export default function Sidebar(props) {
 						<TabPanel index={tabValue} value={0}>
 							{
 								groupChats.map((chat, idx) => (
-									<ListItem key={idx} button onClick={() => changeChat(chat.id)}>
+									<ListItem key={idx} button onClick={() => changeChat(chat.id, chat.title)}>
 										<ListItemAvatar>
 											<Avatar>
 												<AccountCircleIcon/>
@@ -242,7 +245,7 @@ export default function Sidebar(props) {
 						<TabPanel index={tabValue} value={1}>
 							{
 								singleChats.map((chat, idx) => (
-									<ListItem key={idx} button onClick={() => changeChat(chat.id)}>
+									<ListItem key={idx} button onClick={() => changeChat(chat.id, chat.title)}>
 										<ListItemAvatar>
 											<Avatar>
 												<AccountCircleIcon/>
@@ -254,7 +257,7 @@ export default function Sidebar(props) {
 							}
 						</TabPanel>
 						<TabPanel index={tabValue} value={2}>
-							<ListItem button onClick={() => changeChat('globalchat')}>
+							<ListItem button onClick={() => changeChat('globalchat', 'Globalchat')}>
 								<ListItemAvatar>
 									<Avatar>
 										<AccountCircleIcon/>

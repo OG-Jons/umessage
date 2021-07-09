@@ -38,7 +38,10 @@ export default function Main() {
 	const theme = useTheme();
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const [clicked, setClicked] = useState(false);
-	const [currentChat, setCurrentChat] = useState('globalchat');
+	const [currentChat, setCurrentChat] = useState({
+		docID: 'globalchat',
+		title: 'Globalchat'
+	});
 
 	const themeDarkmode = createMuiTheme({
 		palette: {
