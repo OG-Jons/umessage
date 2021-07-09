@@ -46,7 +46,8 @@ export default function ChatBox() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim() === '') return;
-    setNewMessage(input, 'bu6oma6GIOiqAIPRLWk9').then(r => r);
+    // setNewMessage(input, 'bu6oma6GIOiqAIPRLWk9').then(r => r);
+    setNewMessage(input, 'globalchat').then(r => r);
     setInput('');
   };
 
