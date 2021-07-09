@@ -4,12 +4,12 @@ import 'firebase/auth';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyBUWkuLQFz_hbJxQS6LsMf2o6BD417-FUM',
-	authDomain: 'umessages.firebaseapp.com',
+	authDomain: 'umessage-55d40.firebaseapp.com',
 	projectId: 'umessage-55d40',
 	storageBucket: 'umessage-55d40.appspot.com',
 	messagingSenderId: '696598137954',
-	appId: '1:696598137954:web:1a104f3b9001d59804953b',
-	measurementId: 'G-Z2YMF1CXZ8'
+	appId: '1:696598137954:web:3cbe3bb936f0eff604953b',
+	measurementId: 'G-LCSRCGH6LX'
 };
 
 firebase.initializeApp(firebaseConfig);
