@@ -17,9 +17,7 @@
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "no-unused-vars": "off",
-    "react/prop-types": "off",
-    "semi": "off"
+    "semi": "warn"
   },
   "settings": {
     "react": {
