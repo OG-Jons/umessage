@@ -1,9 +1,18 @@
 {
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "ignorePatterns": ["**.css"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,17 +20,24 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "no-unused-vars": "warn",
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
+    "indent": [
+      "error",
+      "tab"
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
     "react/react-in-jsx-scope": "off",
-    "semi": "off"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+    "react/prop-types": "off",
+    "no-mixed-spaces-and-tabs": "off"
   }
 }

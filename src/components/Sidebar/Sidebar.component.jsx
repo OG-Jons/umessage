@@ -1,8 +1,8 @@
 export default function Sidebar() {
 
-    return (
-        <>
+	return (
+		<>
           Sidebar
-        </>
-    )
+		</>
+	);
 }
